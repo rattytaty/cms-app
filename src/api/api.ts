@@ -22,12 +22,12 @@ export const customersApi = {
         return instance.get<Customer[]>("")
     },
     createCustomer(customer:Customer) {
-        return instance.post<Customer>("/", customer)
+        return instance.post<Customer>("", customer)
     },
     deleteCustomer(customerId: string) {
-        return instance.delete<Customer>(`/${customerId}`)
+        return instance.delete<void>(`/${customerId}`)
     },
     updateCustomer(customerId: string, data: Customer) {
-        return instance.put(`/${customerId}`, data)
+        return instance.put<Customer>(`/${customerId}`, data)
     },
 }

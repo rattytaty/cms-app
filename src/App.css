@@ -16,7 +16,7 @@
 }
 
 .customersTable th {
-    background-color: #eae9f8;
+    background-color: #d2d7dc;
     height: 40px;
     text-align: center;
     font-size: 12px;
@@ -25,7 +25,7 @@
 }
 
 .customersTable tbody tr:hover {
-    background-color: #e0ddef
+    background-color: #f3f0fd
 }
 
 .customersTable td {
@@ -51,6 +51,7 @@
 }
 
 .customer-action {
+    background-color: #deecfd;
     width: 32px;
     height: 32px;
     display: inline-flex;
@@ -62,4 +63,8 @@
     font-size: 18px;
     line-height: 1;
     cursor: pointer;
+    margin: 5px;
+}
+.customer-action:hover {
+    background-color: #92d2ff;
 }
