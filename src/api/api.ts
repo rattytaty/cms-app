@@ -17,11 +17,22 @@ export type Customer = {
     id: string
 }
 
+export type CustomerTypeForCreation = {
+    name: string,
+    address: string,
+    email: string,
+    phone: string,
+    note: string,
+    assignedTo: string,
+    date: number,
+    equipment: string,
+}
+
 export const customersApi = {
     getCustomers() {
         return instance.get<Customer[]>("")
     },
-    createCustomer(customer:Customer) {
+    createCustomer(customer:CustomerTypeForCreation) {
         return instance.post<Customer>("", customer)
     },
     deleteCustomer(customerId: string) {

@@ -1,40 +1,17 @@
-import './App.css'
-import {useEffect, useState} from "react";
-import {type Customer, customersApi} from "./api/api.ts";
-import Table from "./components/table/Table.tsx";
+import {useContext} from "react";
+import CustomersTable from "./components/table/CustomersTable.tsx";
+import {CustomersContext} from "./hooks/CustomersContext.ts";
+import CreateCustomer from "./components/table/CreateCustomer.tsx";
+import {Stack} from "@mantine/core";
 
 function App() {
 
-    const [selectedLimit, setSelectedLimit] = useState<number>(10)
-    const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [customers, setCustomers] = useState<Customer[]>([])
+    const {customers} = useContext(CustomersContext)
 
-
-
-    /*useEffect(() => {
-
-            setIsLoading(true)
-            api.fetchPizzas(currentPage, selectedLimit).then(response => {
-                setProducts(response)
-                setIsLoading(false)
-            })
-        }, [selectedLimit, currentPage])*/
-
-    useEffect(() => {
-        customersApi.getCustomers().then(response => {
-            setCustomers(response.data)
-        })
-    }, []);
-
-
-
-    return <div className="app">
-
-
-        <Table customers={customers}/>
-
-
-    </div>
+    return <Stack m={20} gap="md">
+        <CreateCustomer/>
+        <CustomersTable customers={customers}></CustomersTable>
+    </Stack>
 }
 
 export default App

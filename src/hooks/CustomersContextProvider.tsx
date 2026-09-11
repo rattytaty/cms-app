@@ -1,5 +1,5 @@
 import {type FC, type ReactNode, useEffect, useState} from "react";
-import {type Customer, customersApi} from "./api.ts";
+import {type Customer, customersApi, type CustomerTypeForCreation} from "../api/api.ts";
 import {CustomersContext} from "./CustomersContext.ts";
 
 const CustomersContextProvider: FC<{ children: ReactNode }> = ({children}) => {
@@ -16,6 +16,7 @@ const CustomersContextProvider: FC<{ children: ReactNode }> = ({children}) => {
             try {
                 const response = await customersApi.getCustomers();
                 setCustomers(response.data);
+                console.log(response)
             } catch {
                 setError("Failed to load customers");
             } finally {
@@ -25,7 +26,7 @@ const CustomersContextProvider: FC<{ children: ReactNode }> = ({children}) => {
 
         getCustomers();
     }, []);
-    const createCustomer = async (customer: Customer) => {
+    const createCustomer = async (customer: CustomerTypeForCreation) => {
         try {
             const response = await customersApi.createCustomer(customer);
 
@@ -68,10 +69,13 @@ const CustomersContextProvider: FC<{ children: ReactNode }> = ({children}) => {
             setError("Failed to delete customer");
         }
     };
+    const clearError =()=>{
+        setError("")
+    }
 
 
     return <CustomersContext.Provider value={{
-        customers, error, loading, setError, deleteCustomer, updateCustomer,  createCustomer
+        customers, error, loading, clearError, deleteCustomer, updateCustomer,  createCustomer
     }}>
         {children}
     </CustomersContext.Provider>
